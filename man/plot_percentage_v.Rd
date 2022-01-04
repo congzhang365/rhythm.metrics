@@ -42,6 +42,7 @@ df <- data.frame (cv_label  = c("consonant", "vowel", "consonant", "vowel",
 
 # Saving the plot
 plot_percentage_v(df, v_label="vowel", utterance_id, cv_duration, save_fig=T, fig_path='C:/Users/congzhang/Desktop/')
+
 # Not saving the plot
 plot_percentage_v(df, v_label="vowel", utterance_id, cv_duration, save_fig=FALSE)
 

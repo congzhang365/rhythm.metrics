@@ -37,6 +37,7 @@ df <- data.frame (cv_label  = c("consonant", "vowel", "consonant", "vowel",
 
 # Saving the plot
 plot_rpvi(df, c_label="consonant", utterance_id, cv_duration, save_fig=T, fig_path='C:/Users/congzhang/Desktop/')
+
 # Not saving the plot
 plot_rpvi(df, c_label="consonant", utterance_id, cv_duration, save_fig=FALSE, fig_path=NULL)
 

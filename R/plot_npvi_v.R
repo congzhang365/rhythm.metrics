@@ -23,6 +23,7 @@
 #'
 #' # Saving the plot
 #' plot_npvi(df, c_label="vowel", utterance_id, cv_duration, save_fig=T, fig_path='C:/Users/congzhang/Desktop/')
+#'
 #' # Not saving the plot
 #' plot_npvi(df, c_label="vowel", utterance_id, cv_duration, save_fig=FALSE, fig_path=NULL)
 #'
@@ -59,7 +60,7 @@ plot_npvi <- function(df, v_label, utterance_id, cv_duration, save_fig=FALSE, fi
     dplyr::mutate(npvi_v=(abs(diff)/sum/pairs)*100)
 
   plot <- ggplot2::ggplot(npvi_v3,
-                          aes(x=cv_label,
+                          ggplot2::aes(x=cv_label,
                               y=npvi_v,
                               fill=cv_label)) +
     ggplot2::geom_boxplot(show.legend = F) +

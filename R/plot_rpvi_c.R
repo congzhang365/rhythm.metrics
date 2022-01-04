@@ -23,6 +23,7 @@
 #'
 #' # Saving the plot
 #' plot_rpvi(df, c_label="consonant", utterance_id, cv_duration, save_fig=T, fig_path='C:/Users/congzhang/Desktop/')
+#'
 #' # Not saving the plot
 #' plot_rpvi(df, c_label="consonant", utterance_id, cv_duration, save_fig=FALSE, fig_path=NULL)
 #'
@@ -48,7 +49,7 @@ plot_rpvi <- function(df, c_label, utterance_id, cv_duration, save_fig=FALSE, fi
     dplyr::mutate(rpvi_c=abs(diff)/pairs)
 
   plot <- ggplot2::ggplot(rpvi_c2,
-                          aes(x=cv_label,
+                          ggplot2::aes(x=cv_label,
                               y=rpvi_c,
                               fill=cv_label)) +
     ggplot2::geom_boxplot(show.legend = FALSE) +

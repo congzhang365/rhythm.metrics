@@ -25,9 +25,10 @@
 #'                   cv_duration = c(0.1, 0.8, 0.2, 0.5, 0.3, 0.3, 0.4, 0.7))
 #'
 #' # Saving the plot
-#' plot_delta_cv(df=data, cv_label, utterance_id, cv_duration, save_fig=T, fig_path='C:/Users/congzhang/Desktop/')
+#' plot_delta_cv(df, cv_label, utterance_id, cv_duration, save_fig=T, fig_path='C:/Users/congzhang/Desktop/')
+#'
 #' # Not saving the plot
-#' plot_delta_cv(df=data, cv_label, utterance_id, cv_duration, save_fig=F)
+#' plot_delta_cv(df, cv_label, utterance_id, cv_duration, save_fig=F)
 #'
 #' @export
 plot_delta_cv <- function(df, cv_label, utterance_id, cv_duration, save_fig=FALSE, fig_path=NULL) {
@@ -36,9 +37,9 @@ plot_delta_cv <- function(df, cv_label, utterance_id, cv_duration, save_fig=FALS
     dplyr::summarise(mean_d = sd(cv_duration, na.rm = T))
 
   plot <- ggplot2::ggplot(plot_df,
-                          aes(x=cv_label,
-                              y=plot_df$mean_d,
-                              fill=plot_df$cv_label)) +
+                          ggplot2::aes(x=cv_label,
+                              y=mean_d,
+                              fill=cv_label)) +
     ggplot2::geom_boxplot() +
     ggsci::scale_fill_jco() +
     ggplot2::labs(y= 'Δ C / Δ V', x = 'Segment Type', fill = 'Segment Type') +

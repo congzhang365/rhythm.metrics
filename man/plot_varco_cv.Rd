@@ -39,6 +39,7 @@ df <- data.frame (cv_label  = c("c", "v", "c", "v","c", "v", "c", "v"),
 
 # Saving the plot
 plot_varco_cv(df=data, cv_label, utterance_id, cv_duration, save_fig=T, fig_path='C:/Users/congzhang/Desktop/')
+
 # Not saving the plot
 plot_varco_cv(df=data, cv_label, utterance_id, cv_duration, save_fig=F)
 

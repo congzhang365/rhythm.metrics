@@ -23,10 +23,10 @@
 #' df <- data.frame (cv_label  = c("c", "v", "c", "v","c", "v", "c", "v"),
 #'                   utterance_id = c("utt_1", "utt_1", "utt_2", "utt_2","utt_1", "utt_1", "utt_2", "utt_2"),
 #'                   cv_duration = c(0.1, 0.8, 0.2, 0.5, 0.3, 0.3, 0.4, 0.7))
-
 #'
 #' # Saving the plot
 #' plot_varco_cv(df=data, cv_label, utterance_id, cv_duration, save_fig=T, fig_path='C:/Users/congzhang/Desktop/')
+#'
 #' # Not saving the plot
 #' plot_varco_cv(df=data, cv_label, utterance_id, cv_duration, save_fig=F)
 #'
@@ -37,7 +37,7 @@ plot_varco_cv <- function(df, cv_label, utterance_id, cv_duration, save_fig=FALS
     dplyr::summarise(mean_var = sd(cv_duration, na.rm = T)/mean(cv_duration)*100)
 
   plot <- ggplot2::ggplot(plot_df,
-                          aes(x=plot_df$cv_label,
+                          ggplot2::aes(x=plot_df$cv_label,
                               y=plot_df$mean_var,
                               fill=plot_df$cv_label)) +
     ggplot2::geom_boxplot()+

@@ -28,6 +28,7 @@
 #'
 #' # Saving the plot
 #' plot_percentage_v(df, v_label="vowel", utterance_id, cv_duration, save_fig=T, fig_path='C:/Users/congzhang/Desktop/')
+#'
 #' # Not saving the plot
 #' plot_percentage_v(df, v_label="vowel", utterance_id, cv_duration, save_fig=FALSE)
 #'
@@ -36,18 +37,18 @@ plot_percentage_v <- function(df, v_label, utterance_id, cv_duration, save_fig=F
   plot_df <- df %>%
     dplyr::filter(cv_label==v_label) %>%
     dplyr::group_by(utterance_id, cv_label) %>%
-    dplyr::summarise(v = sum(cv_duration_ms, na.rm = T))
+    dplyr::summarise(v = sum(cv_duration, na.rm = T))
 
   utt_dur <- df %>%
-    dplyr::select(utterance_id, utterance_duration_ms)
+    dplyr::select(utterance_id, utterance_duration)
 
   plot_df <- left_join(plot_df, utt_dur)
   plot_df <- plot_df %>%
     dplyr::group_by(utterance_id, cv_label) %>%
-    dplyr::summarise(percent_v = v/utterance_duration_ms)
+    dplyr::summarise(percent_v = v/utterance_duration)
 
   plot <- ggplot2::ggplot(plot_df,
-                          aes(x=plot_df$cv_label,
+                          ggplot2::aes(x=plot_df$cv_label,
                               y=percent_v,
                               fill=plot_df$cv_label)) +
     ggplot2::geom_boxplot(show.legend = FALSE) +
