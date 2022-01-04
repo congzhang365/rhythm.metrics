@@ -1,0 +1,41 @@
+---
+title: "rhythm_metrics"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{rhythm_metrics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(rhythm.metrics)
+```
+
+## Funcitons 
++ "delta_cv"
++ "varco_cv"
++ "percentage_v"
++ "rpvi_c" 
++ "npvi_v"
+
+
++ "plot_delta_cv"
++ "plot_npvi"        
++ "plot_percentage_v"
++ "plot_rpvi"
++ "plot_varco_cv"
+          
+  
+
+
+
+```{r}
+ls("package:rhythm.metrics")
+```
