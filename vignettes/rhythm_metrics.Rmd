@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 
-## List of Funcitons 
+## List of Functions 
 
 ### Calculations
 + "delta_cv"
