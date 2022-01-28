@@ -1,7 +1,20 @@
 # rhythm.metrics
-## Author: Cong Zhang  
+### Author: Cong Zhang  
 
 The `rhythm.metrics` package is designed for calculating and visualising speech rhythm metrics. This package provides the calculation of Delta C / Delta V, VarcoC / VarcoV, %V, rPVI_C, nPVI_V. More metrics will be added in the future.
+
+### Citation  
+
+Zhang, C. (2022, January 28). A Guide for the R Package "rhythm_metrics". Retrieved from https://osf.io/kfnzt/. 
+
+```
+@article{zhang2022,
+  title={A Guide for the R Package "rhythm_metrics"},
+  author={Zhang, Cong},
+  url={https://osf.io/kfnzt/},
+  year={2022}
+ }
+```
 
 ## List of Functions 
 
