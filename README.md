@@ -19,18 +19,18 @@ Zhang, C. (2022). A Guide for the R Package "rhythm_metrics". Retrieved from htt
 ## List of Functions 
 
 ### Calculations
-+ "delta_cv"
-+ "varco_cv"
-+ "percentage_v"
-+ "rpvi_c" 
-+ "npvi_v"
++ delta_cv
++ varco_cv
++ percentage_v
++ rpvi_c 
++ npvi_v
 
 ### Plotting
-+ "plot_delta_cv"
-+ "plot_npvi"        
-+ "plot_percentage_v"
-+ "plot_rpvi"
-+ "plot_varco_cv"
++ plot_delta_cv
++ plot_npvi        
++ plot_percentage_v
++ plot_rpvi
++ plot_varco_cv
  
  
 ## Installation
@@ -78,7 +78,7 @@ Delta C and Delta V are rhythm metrics based on Ramus, F., Nespor, M., & Mehler,
 
 
 ```
-delta_cv(df, df$cv_label, df$utterance_id, df$cv_duration)
+delta_cv(df, cv_label, utterance_id, cv_duration)
 ```
 
 
