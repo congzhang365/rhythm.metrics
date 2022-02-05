@@ -1,5 +1,11 @@
 # rhythm.metrics
-### Author: Cong Zhang  
+
+This is a beta version. More metrics will be added in the future.
+If there are bugs in the package, or if you'd like a metrics to be added, please submit an issue or email me at cong.zhang@ru.nl .
+
+
+
+###£ Author: Cong Zhang  
 
 The `rhythm.metrics` package is designed for calculating and visualising speech rhythm metrics. This package provides the calculation of Delta C / Delta V, VarcoC / VarcoV, %V, rPVI_C, nPVI_V. More metrics will be added in the future.
 
