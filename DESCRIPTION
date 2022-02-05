@@ -23,3 +23,6 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 Config/testthat/edition: 3
+URL: https://github.com/congzhang365/rhythm.metrics
+BugReports: https://github.com/congzhang365/rhythm.metrics/issues
+Vignettes: https://github.com/congzhang365/rhythm.metrics/blob/main/vignettes/rhythm_metrics.pdf

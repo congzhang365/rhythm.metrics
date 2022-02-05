@@ -5,7 +5,7 @@ The `rhythm.metrics` package is designed for calculating and visualising speech 
 
 ### Citation  
 
-Zhang, C. (2022, January 28). A Guide for the R Package "rhythm_metrics". Retrieved from https://osf.io/kfnzt/. 
+Zhang, C. (2022). A Guide for the R Package "rhythm_metrics". Retrieved from https://osf.io/kfnzt/. 
 
 ```
 @article{zhang2022,
