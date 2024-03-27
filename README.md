@@ -77,7 +77,7 @@ df <- data.frame (cv_label  = c("consonant", "vowel", "consonant", "vowel",
 
 ### delta_cv
 
-Delta C and Delta V are rhythm metrics based on Ramus, F., Nespor, M., & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. Cognition, 73(3), 265-292.
+Delta C and Delta V are rhythm metrics based on *Ramus, F., Nespor, M., & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. Cognition, 73(3), 265-292.*
 
 `Delta C: SD of total C duration`  
 `Delta V: SD of total V duration`
@@ -95,7 +95,7 @@ plot_delta_cv(df, cv_label, utterance_id, cv_duration)
 
 ### varco_cv
 
-Varco C and Varco V are rhythm metrics based on Dellwo, Volker (2006). Rhythm and Speech Rate: A Variation Coefficient for deltaC. In: Karnowski, P; Szigeti, I. Language and language-processing. Frankfurt/Main: Peter Lang, 231-241.
+Varco C and Varco V are rhythm metrics based on *Dellwo, Volker (2006). Rhythm and Speech Rate: A Variation Coefficient for deltaC. In: Karnowski, P; Szigeti, I. Language and language-processing. Frankfurt/Main: Peter Lang, 231-241.*
 
 `Varco C: Delta C / mean(C duration) * 100`  
 `Varco V: Delta V / mean(V duration) * 100`
@@ -113,7 +113,7 @@ plot_varco_cv(df, cv_label, utterance_id, cv_duration)
 
 ### percentage_v
 
-%V is a rhythm metrics based on Ramus, F., Nespor, M., & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. Cognition, 73(3), 265-292. It calculates the ratio of vocalic material to the total duration of an utterance.
+%V is a rhythm metric based on *Ramus, F., Nespor, M., & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. Cognition, 73(3), 265-292. It calculates the ratio of vocalic material to the total duration of an utterance.*
 
 `% V: total V duration / total utterance duration`
 
@@ -130,7 +130,7 @@ plot_percentage_v(df, v_label="vowel", utterance_id, cv_duration)
 
 ### rpvi_c
 
-rPVI C is a rhythm metrics based on Grabe, E., & Low, E. L. (2002). Durational variability in speech and the rhythm class hypothesis. In Laboratory phonology 7 (pp. 515-546). De Gruyter Mouton.
+rPVI C is a rhythm metric based on *Grabe, E., & Low, E. L. (2002). Durational variability in speech and the rhythm class hypothesis. In Laboratory phonology 7 (pp. 515-546). De Gruyter Mouton.*
 
 It calculates the sum of the absolute differences between pairs of consecutive consonantal intervals divided by the number of pairs in the speech sample.
 
@@ -148,7 +148,7 @@ plot_rpvi(df, c_label="consonant", utterance_id, cv_duration)
 
 ### npvi_v
 
-nPVI V is a rhythm metrics based on Grabe, E., & Low, E. L. (2002). Durational variability in speech and the rhythm class hypothesis. In Laboratory phonology 7 (pp. 515-546). De Gruyter Mouton.
+nPVI V is a rhythm metric based on *Grabe, E., & Low, E. L. (2002). Durational variability in speech and the rhythm class hypothesis. In Laboratory phonology 7 (pp. 515-546). De Gruyter Mouton.*
 
 It calculates the normalised sum of the absolute differences between pairs of consecutive vocalic intervals divided by the number of pairs in the speech sample.
 
