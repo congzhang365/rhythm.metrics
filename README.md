@@ -1,7 +1,7 @@
 # rhythm.metrics
 
 This is a beta version. More metrics will be added in the future.
-If there are bugs in the package, or if you'd like a metrics to be added, please submit an issue or email me at cong.zhang@ru.nl .
+If there are bugs in the package, or if you'd like a metrics to be added, please submit an issue or email me at cong.zhang@newcastle.ac.uk
 
 
 
