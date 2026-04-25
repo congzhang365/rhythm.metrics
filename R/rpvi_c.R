@@ -22,23 +22,21 @@
 #' @export
 rpvi_c <- function(df, c_label, utterance_id, cv_duration) {
   
-  # 1. Filter for consonants and calculate rPVI per utterance
+  rpvi_c <- function(df, cv_label, utterance_id, cv_duration, label_name = "consonant") {
+  
+  # Use label_name to distinguish the value from the column cv_label
   rpvi_data <- df %>%
-    dplyr::filter({{ cv_label }} == c_label) %>%
+    dplyr::filter({{ cv_label }} == label_name) %>%
     dplyr::group_by({{ utterance_id }}) %>%
     dplyr::mutate(
-      # Calculate absolute difference between consecutive intervals
       pair_diff = abs({{ cv_duration }} - dplyr::lead({{ cv_duration }}))
     ) %>%
     dplyr::summarise(
-      # Count pairs (m-1)
       m_minus_1 = dplyr::n() - 1,
-      # Sum of absolute differences divided by number of pairs
       rpvi_utt = sum(pair_diff, na.rm = TRUE) / m_minus_1,
       .groups = "drop"
     )
 
-  # 2. Return the mean across all utterances
   result <- rpvi_data %>%
     dplyr::summarise(rpvi = mean(rpvi_utt, na.rm = TRUE))
 
