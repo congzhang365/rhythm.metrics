@@ -2,66 +2,56 @@
 #'
 #' This function loads a dataframe as input and returns a box plot for rPVI C values.
 #'
-#' @author Cong Zhang, \email{cong.zhang@ru.nl}
-#' @param
-#' df: a data frame containing cv_labels, utterance_id, and cv_duration values.
-#' @param
-#' c_label: a string to filter the consonants, e.g. `c_label = 'C'` or `c_label = 'consonant'`
-#' @param
-#' utterance_id: each unique utterance should have a unique id
-#' @param
-#' cv_duration: the duration of C or V (only the values for vowels will be used)
+#' @author Cong Zhang, \email{cong.zhang@newcastle.ac.uk}
+#' @param df a data frame containing cv_labels, utterance_id, and cv_duration values.
+#' @param c_label a string to filter the consonants, e.g. `c_label = 'consonant'`
+#' @param utterance_id column name for unique utterance IDs.
+#' @param cv_duration column name for the duration of C or V.
+#' @param save_fig default is `FALSE`. Change to `TRUE` to save the plot.
+#' @param fig_path default is `NULL`. Required if `save_fig = TRUE`.
 #'
-#' @return
-#' A boxplot for rPVI C values.
+#' @return A boxplot for rPVI C values.
 #' @examples
-#' df <- data.frame (cv_label  = c("consonant", "vowel", "consonant", "vowel",
-#'                                 "consonant", "vowel", "consonant", "vowel"),
-#'                   utterance_id = c("utt_1", "utt_1", "utt_2", "utt_2",
-#'                                    "utt_1", "utt_1", "utt_2", "utt_2"),
-#'                   cv_duration = c(0.1, 0.8, 0.2, 0.5, 0.3, 0.3, 0.4, 0.7))
-#'
-#' # Saving the plot
-#' plot_rpvi(df, c_label="consonant", utterance_id, cv_duration, save_fig=T, fig_path='C:/Users/congzhang/Desktop/')
+#' df_test <- data.frame(cv_label = rep(c("consonant", "vowel"), 10),
+#'                       utterance_id = rep(paste0("utt_", 1:10), each = 2),
+#'                       cv_duration = runif(20, 0.1, 0.5))
 #'
 #' # Not saving the plot
-#' plot_rpvi(df, c_label="consonant", utterance_id, cv_duration, save_fig=FALSE, fig_path=NULL)
+#' plot_rpvi(df_test, c_label="consonant", utterance_id, cv_duration, save_fig=FALSE)
 #'
 #' @export
 plot_rpvi <- function(df, c_label, utterance_id, cv_duration, save_fig=FALSE, fig_path=NULL) {
-  rpvi_c_pair <- df %>%
-    dplyr::filter(cv_label==c_label) %>%
-    dplyr::group_by(utterance_id, cv_label) %>%
-    dplyr::summarise(pairs=n()-1)
+  
+  # 1. Calculate rPVI per utterance
+  plot_df <- df %>%
+    dplyr::filter({{ cv_label }} == c_label) %>%
+    dplyr::group_by({{ utterance_id }}, {{ cv_label }}) %>%
+    dplyr::mutate(
+      pair_diff = abs({{ cv_duration }} - dplyr::lead({{ cv_duration }}))
+    ) %>%
+    dplyr::summarise(
+      rpvi_val = sum(pair_diff, na.rm = TRUE) / (dplyr::n() - 1),
+      .groups = "drop"
+    )
 
-  rpvi_c_diff1 <- df %>%
-    dplyr::filter(cv_label==c_label) %>%
-    dplyr::group_by(utterance_id, cv_label) %>%
-    dplyr::mutate(diff = cv_duration - lag(cv_duration))
-
-  rpvi_c_diff2 <- rpvi_c_diff1 %>%
-    dplyr::group_by(utterance_id, cv_label) %>%
-    dplyr::summarise(diff = sum(diff, na.rm = T))
-
-  rpvi_c1 <- left_join(rpvi_c_diff2, rpvi_c_pair, by=c('utterance_id', 'cv_label'))
-
-  rpvi_c2 <- rpvi_c1 %>%
-    dplyr::mutate(rpvi_c=abs(diff)/pairs)
-
-  plot <- ggplot2::ggplot(rpvi_c2,
-                          ggplot2::aes(x=cv_label,
-                              y=rpvi_c,
-                              fill=cv_label)) +
+  # 2. Create the plot
+  plot <- ggplot2::ggplot(plot_df, 
+                          ggplot2::aes(x = {{ cv_label }}, 
+                                       y = .data$rpvi_val, 
+                                       fill = {{ cv_label }})) +
     ggplot2::geom_boxplot(show.legend = FALSE) +
     ggsci::scale_fill_jco() +
-    ggplot2::labs(y= 'rPVI-C', x = 'Consonant')
+    ggplot2::labs(y = 'rPVI-C Value', x = 'Segment Type') +
+    ggplot2::theme_minimal()
 
-  if (save_fig==TRUE){
-    plot
-    ggplot2::ggsave(paste0(fig_path, '/rpvi_c.png'))
-    plot
-  } else{
-    plot
+  # 3. Save and Return logic
+  if (save_fig) {
+    if (is.null(fig_path)) {
+      stop("You must provide a 'fig_path' to save the figure.")
+    }
+    full_path <- file.path(fig_path, "rpvi_c.png")
+    ggplot2::ggsave(full_path, plot = plot, width = 6, height = 4)
   }
 
+  return(plot)
 }
