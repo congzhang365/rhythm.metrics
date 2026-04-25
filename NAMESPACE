@@ -2,8 +2,7 @@
 
 importFrom(magrittr,"%>%")
 import(rlang)
-importFrom(dplyr,group_by)
-importFrom(dplyr,summarise)
+importFrom(dplyr)
 importFrom(stats,sd)
 
 export(delta_cv)
