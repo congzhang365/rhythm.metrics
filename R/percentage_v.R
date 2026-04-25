@@ -6,48 +6,48 @@
 #'
 #' `% V: total V duration / total utterance duration`
 #'
-#' @author Cong Zhang, \email{cong.zhang@ru.nl}
-#' @param
-#' df: a data frame containing cv_labels, utterance_id, cv_duration, and utterance_duration values.
-#' @param
-#' v_label: a string to filter the vowels, e.g. `v_label = 'V'` or `v_label = 'vowel'`
-#' @param
-#' utterance_id: each unique utterance should have a unique id
-#' @param
-#' cv_duration: the duration of C or V (only the values for vowels will be used)
-#' @param
-#' utterance_duration: the duration of entire utterances
+#' @author Cong Zhang, \email{cong.zhang@newcastle.ac.uk}
+#' @param df a data frame containing cv_labels, utterance_id, cv_duration, and utterance_duration values.
+#' @param v_label a string to filter the vowels, e.g. `v_label = 'vowel'`
+#' @param utterance_id column name for unique utterance IDs
+#' @param cv_duration column name for the duration of C or V
+#' @param utterance_duration column name for the duration of entire utterances
 #'
-#' @return
-#' percent_v: a data frame containing the mean values and standard deviation of %
+#' @return a data frame containing the mean values and standard deviation of %V
 #' @examples
-#' df <- data.frame (cv_label  = c("consonant", "vowel", "consonant", "vowel",
-#'                                 "consonant", "vowel", "consonant", "vowel"),
-#'                   utterance_id = c("utt_1", "utt_1", "utt_2", "utt_2",
-#'                                    "utt_1", "utt_1", "utt_2", "utt_2"),
-#'                   cv_duration = c(0.1, 0.8, 0.2, 0.5, 0.3, 0.3, 0.4, 0.7),
-#'                   utterance_duration = c(2.4, 2.4, 2.7, 2.7, 2.4, 2.4, 2.7, 2.7))
+#' df_test <- data.frame(cv_label = c("consonant", "vowel", "consonant", "vowel"),
+#'                       utterance_id = c("utt_1", "utt_1", "utt_2", "utt_2"),
+#'                       cv_duration = c(0.1, 0.8, 0.2, 0.5),
+#'                       utterance_duration = c(2.4, 2.4, 2.7, 2.7))
 #'
-#' percentage_v(df, v_label="vowel", utterance_id, cv_duration, utterance_duration)
+#' percentage_v(df_test, v_label="vowel", utterance_id, cv_duration, utterance_duration)
 #'
 #' @export
 percentage_v <- function(df, v_label, utterance_id, cv_duration, utterance_duration) {
-  percent_v_1 <- df %>%
-    dplyr::filter(cv_label==v_label) %>%
-    dplyr::group_by(utterance_id, cv_label) %>%
-    dplyr::summarise(v = sum(cv_duration, na.rm = T))
+  
+  # 1. Calculate total vowel duration per utterance
+  v_sum <- df %>%
+    dplyr::filter(cv_label == v_label) %>%
+    dplyr::group_by({{ utterance_id }}, cv_label) %>%
+    dplyr::summarise(v_total = sum({{ cv_duration }}, na.rm = TRUE), .groups = "drop")
+
+  # 2. Get unique utterance durations (distinct to avoid row duplication)
   utt_dur <- df %>%
-    dplyr::select(utterance_id, utterance_duration)
+    dplyr::select({{ utterance_id }}, {{ utterance_duration }}) %>%
+    dplyr::distinct()
 
-  percent_v_1 <- left_join(percent_v_1, utt_dur)
-  percent_v_1 <- percent_v_1 %>%
-    dplyr::group_by(utterance_id, cv_label) %>%
-    dplyr::summarise(percent_v = v/utterance_duration)
+  # 3. Join and calculate %V
+  percent_v_data <- dplyr::left_join(v_sum, utt_dur, by = rlang::as_label(rlang::enquo(utterance_id))) %>%
+    dplyr::mutate(percent_v = v_total / {{ utterance_duration }})
 
-  percent_v <- percent_v_1 %>%
+  # 4. Final Summary
+  result <- percent_v_data %>%
     dplyr::group_by(cv_label) %>%
-    dplyr::summarise(mean_percent_v = mean(percent_v, na.rm = T),
-              sd_pecent_v = sd(percent_v, na.rm = T))
-  percent_v
-}
+    dplyr::summarise(
+      mean_percent_v = mean(percent_v, na.rm = TRUE),
+      sd_percent_v = stats::sd(percent_v, na.rm = TRUE),
+      .groups = "drop"
+    )
 
+  return(result)
+}
