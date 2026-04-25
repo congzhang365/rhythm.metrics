@@ -129,7 +129,8 @@ percentage_v(df, v_label = "vowel", utterance_id, cv_duration, utterance_duratio
 ```
 
 ```r
-plot_percentage_v(df, v_label = "vowel", utterance_id, cv_duration)
+plot_percentage_v(df, cv_label, label_name = "vowel", 
+                  utterance_id, cv_duration, utterance_duration)
 ```
 
 ### rPVI-C
@@ -145,7 +146,7 @@ rpvi_c(df, c_label = "consonant", utterance_id, cv_duration)
 ```
 
 ```r
-plot_rpvi(df, c_label = "consonant", utterance_id, cv_duration)
+plot_rpvi(df, cv_label, label_name = "consonant", utterance_id, cv_duration)
 ```
 
 ### nPVI-V
@@ -161,7 +162,7 @@ npvi_v(df, v_label = "vowel", utterance_id, cv_duration)
 ```
 
 ```r
-plot_npvi(df, v_label = "vowel", utterance_id, cv_duration)
+plot_npvi(df, cv_label, label_name = "vowel", utterance_id, cv_duration)
 ```
 
 ## Example Workflow
@@ -198,11 +199,20 @@ df <- data.frame(
   )
 )
 
+# Analysis
 delta_cv(df, cv_label, utterance_id, cv_duration)
 varco_cv(df, cv_label, utterance_id, cv_duration)
 percentage_v(df, v_label = "vowel", utterance_id, cv_duration, utterance_duration)
-rpvi_c(df, c_label = "consonant", utterance_id, cv_duration)
-npvi_v(df, v_label = "vowel", utterance_id, cv_duration)
+rpvi_c(df, cv_label, label_name = "consonant", utterance_id, cv_duration)
+npvi_v(df, cv_label, label_name = "vowel", utterance_id, cv_duration)
+
+# Visualisation
+plot_delta_cv(df, cv_label, utterance_id, cv_duration)
+plot_varco_cv(df, cv_label, utterance_id, cv_duration)
+plot_percentage_v(df, cv_label, label_name = "vowel", 
+                  utterance_id, cv_duration, utterance_duration)
+plot_rpvi(df, cv_label, label_name = "consonant", utterance_id, cv_duration)
+plot_npvi(df, cv_label, label_name = "vowel", utterance_id, cv_duration)
 ```
 
 ## Documentation
@@ -241,4 +251,4 @@ Bug reports, feature requests, and suggestions are welcome. If you encounter an 
 
 ## License
 
-`GPL-3`
+GPL-3
