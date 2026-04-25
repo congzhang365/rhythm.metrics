@@ -142,7 +142,7 @@ Grabe, E., & Low, E. L. (2002). Durational variability in speech and the rhythm 
 It calculates the average absolute difference between consecutive consonantal intervals.
 
 ```r
-rpvi_c(df, c_label = "consonant", utterance_id, cv_duration)
+rpvi_c(df, cv_label, label_name = "consonant", utterance_id, cv_duration)
 ```
 
 ```r
@@ -158,7 +158,7 @@ Grabe, E., & Low, E. L. (2002). Durational variability in speech and the rhythm 
 It calculates the normalised average absolute difference between consecutive vocalic intervals.
 
 ```r
-npvi_v(df, v_label = "vowel", utterance_id, cv_duration)
+npvi_v(df, cv_label, label_name = "vowel", utterance_id, cv_duration)
 ```
 
 ```r
