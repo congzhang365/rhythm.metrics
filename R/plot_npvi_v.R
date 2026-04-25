@@ -4,7 +4,8 @@
 #'
 #' @author Cong Zhang, \email{cong.zhang@newcastle.ac.uk}
 #' @param df a data frame containing cv_labels, utterance_id, and cv_duration values.
-#' @param v_label a string to filter the vowels, e.g. `v_label = 'vowel'`
+#' @param cv_label column name for the segment labels (e.g., cv_label).
+#' @param label_name a string to filter the vowels, e.g. `label_name = 'vowel'`.
 #' @param utterance_id column name for unique utterance IDs.
 #' @param cv_duration column name for the duration of C or V.
 #' @param save_fig default is `FALSE`. Change to `TRUE` to save the plot.
@@ -12,19 +13,15 @@
 #'
 #' @return A boxplot for nPVI V values.
 #' @examples
-#' df_test <- data.frame(cv_label = rep(c("consonant", "vowel"), 10),
-#'                       utterance_id = rep(paste0("utt_", 1:10), each = 2),
-#'                       cv_duration = runif(20, 0.1, 0.9))
-#'
-#' # Not saving the plot
-#' plot_npvi(df_test, v_label="vowel", utterance_id, cv_duration, save_fig = FALSE)
+#' # plot_npvi(df, cv_label = cv_label, label_name = "vowel", 
+#' #           utterance_id = utterance_id, cv_duration = cv_duration)
 #'
 #' @export
-plot_npvi <- function(df, v_label, utterance_id, cv_duration, save_fig=FALSE, fig_path=NULL) {
+plot_npvi <- function(df, cv_label, label_name, utterance_id, cv_duration, save_fig=FALSE, fig_path=NULL) {
   
   # 1. Calculate nPVI per utterance
   plot_df <- df %>%
-    dplyr::filter({{ cv_label }} == v_label) %>%
+    dplyr::filter({{ cv_label }} == label_name) %>%
     dplyr::group_by({{ utterance_id }}, {{ cv_label }}) %>%
     dplyr::mutate(
       pair_diff = abs({{ cv_duration }} - dplyr::lead({{ cv_duration }})),
