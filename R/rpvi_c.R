@@ -19,9 +19,7 @@
 #'
 #' rpvi_c(df_test, c_label="consonant", utterance_id, cv_duration)
 #'
-#' @export
-rpvi_c <- function(df, c_label, utterance_id, cv_duration) {
-  
+#' @export  
   rpvi_c <- function(df, cv_label, utterance_id, cv_duration, label_name = "consonant") {
   
   # Use label_name to distinguish the value from the column cv_label
