@@ -33,8 +33,6 @@
 #'
 #' @export
 npvi_v <- function(df, v_label, utterance_id, cv_duration) {
-  library(dplyr)
-
   npvi_v_pair <- df %>%
     dplyr::filter(cv_label==v_label) %>%
     dplyr::group_by(utterance_id, cv_label) %>%
