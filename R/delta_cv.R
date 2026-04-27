@@ -25,11 +25,11 @@
 #' @importFrom magrittr %>%
 #' @importFrom stats sd
 #' @importFrom dplyr group_by summarise
-#' @importFrom rlang {{ }}
+#' @import rlang
 #' @export
 delta_cv <- function(df, cv_label, utterance_id, cv_duration) {
-  
-  # We use the {{ }} (curly-curly) operator for compatibility with 
+
+  # We use the {{ }} (curly-curly) operator for compatibility with
   # modern dplyr inside functions, but the pipe remains the classic %>%
   res <- df %>%
     dplyr::group_by({{ cv_label }}, {{ utterance_id }}) %>%

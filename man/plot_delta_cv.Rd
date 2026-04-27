@@ -14,17 +14,17 @@ plot_delta_cv(
 )
 }
 \arguments{
-\item{df:}{a data frame containing cv_labels, utterance_id, and cv_duration values.}
+\item{df}{a data frame containing cv_labels, utterance_id, and cv_duration values.}
 
-\item{cv_label:}{whether a segment is a C(onsonant) or a V(owel)}
+\item{cv_label}{column name for segment type (C or V).}
 
-\item{utterance_id:}{each unique utterance should have a unique id}
+\item{utterance_id}{column name for unique utterance IDs.}
 
-\item{cv_duration:}{the duration of C or V}
+\item{cv_duration}{column name for the duration of C or V.}
 
-\item{save_fig:}{the default value is set to \code{FALSE}. Change to \code{TRUE} to save the plot.}
+\item{save_fig}{default is \code{FALSE}. Change to \code{TRUE} to save the plot.}
 
-\item{fig_path:}{the default value is set to \code{NULL}. If \code{save_fig} is set to \code{TRUE}, the path to save the figure is needed.}
+\item{fig_path}{default is \code{NULL}. Required if \code{save_fig = TRUE}.}
 }
 \value{
 A boxplot for Delta C and Delta V values.
@@ -33,18 +33,14 @@ A boxplot for Delta C and Delta V values.
 This function loads a dataframe as input and returns a box plot for Delta C and Delta V values.
 }
 \examples{
-df <- data.frame (cv_label  = c("c", "v", "c", "v","c", "v", "c", "v"),
-                  utterance_id = c("utt_1", "utt_1", "utt_2", "utt_2",
-                                   "utt_1", "utt_1", "utt_2", "utt_2"),
-                  cv_duration = c(0.1, 0.8, 0.2, 0.5, 0.3, 0.3, 0.4, 0.7))
-
-# Saving the plot
-plot_delta_cv(df, cv_label, utterance_id, cv_duration, save_fig=T, fig_path='C:/Users/congzhang/Desktop/')
+df_test <- data.frame(cv_label = rep(c("c", "v"), 10),
+                      utterance_id = rep(paste0("utt_", 1:10), each = 2),
+                      cv_duration = runif(20, 0.05, 0.5))
 
 # Not saving the plot
-plot_delta_cv(df, cv_label, utterance_id, cv_duration, save_fig=F)
+plot_delta_cv(df_test, cv_label, utterance_id, cv_duration, save_fig = FALSE)
 
 }
 \author{
-Cong Zhang, \email{cong.zhang@ru.nl}
+Cong Zhang, \email{cong.zhang@newcastle.ac.uk}
 }

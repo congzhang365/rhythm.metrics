@@ -1,19 +1,15 @@
 ---
-title: "A Guide for the R Package `rhythm_metrics`"
-output: rmarkdown::html_vignette
+title: "A Guide for the R Package `rhythm.metrics`"
+author: "Cong Zhang, Newcastle University"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+    number_sections: true
 vignette: >
-  %\VignetteIndexEntry{rhythm_metrics}
+  %\VignetteIndexEntry{rhythm.metrics}
   %\VignetteEngine{knitr::rmarkdown}
-
-author: Cong Zhang, Radboud University
- 
-# output:
-#   pdf_document:
-#     number_sections: true
-#     keep_tex: true
-#     toc: true
-#   # pdf_document: default
-#   #   number_sections: true
+  %\VignetteEncoding{UTF-8}
 fontsize: 11pt
 ---
 
@@ -53,6 +49,7 @@ devtools::install_github("congzhang365/rhythm.metrics")
 ```{r import libraries, warning=F, message=FALSE}
 library(rhythm.metrics)
 library(dplyr)
+library(ggplot2)
 ```
 \newpage
 
@@ -90,8 +87,7 @@ Delta C and Delta V are rhythm metrics based on Ramus, F., Nespor, M., & Mehler,
 
 
 ```{r}
-delta_cv(df, df$cv_label, df$utterance_id, df$cv_duration)
-
+delta_cv(df, cv_label, utterance_id, cv_duration)
 ```
 
 
@@ -109,7 +105,7 @@ Varco C and Varco V are rhythm metrics based on Dellwo, Volker (2006). Rhythm an
 
 
 ```{r}
-varco_cv(df)
+varco_cv(df, cv_label, utterance_id, cv_duration)
 ```
 
 
@@ -126,12 +122,13 @@ plot_varco_cv(df, cv_label, utterance_id, cv_duration)
 
 
 ```{r}
-percentage_v(df, v_label="vowel")
+percentage_v(df, v_label = "vowel", utterance_id, cv_duration, utterance_duration)
 ```
 
 
 ```{r}
-plot_percentage_v(df, v_label="vowel", utterance_id, cv_duration)
+plot_percentage_v(df, cv_label, label_name = "vowel", 
+                  utterance_id, cv_duration, utterance_duration)
 ```
 
 \newpage
@@ -143,13 +140,12 @@ It calculates the sum of the absolute differences between pairs of consecutive c
 
 
 ```{r}
-rpvi_c(df, c_label="consonant")
+rpvi_c(df, cv_label, label_name = "consonant", utterance_id, cv_duration)
 ```
 
 
 ```{r}
-plot_rpvi(df, c_label="consonant", utterance_id, cv_duration)
-
+plot_rpvi(df, cv_label, label_name = "consonant", utterance_id, cv_duration)
 ```
 
 \newpage
@@ -161,12 +157,11 @@ It calculates the normalised sum of the absolute differences between pairs of co
 
 
 ```{r}
-npvi_v(df, v_label="vowel")
+npvi_v(df, cv_label, label_name = "vowel", utterance_id, cv_duration)
 ```
 
 
 
 ```{r}
-plot_npvi(df, v_label="vowel", utterance_id, cv_duration)
-
+plot_npvi(df, cv_label, label_name = "vowel", utterance_id, cv_duration)
 ```

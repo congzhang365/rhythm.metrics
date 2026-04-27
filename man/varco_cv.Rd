@@ -7,16 +7,16 @@
 varco_cv(df, cv_label, utterance_id, cv_duration)
 }
 \arguments{
-\item{df:}{a data frame containing cv_labels, utterance_id, and cv_duration values.}
+\item{df}{a data frame containing cv_labels, utterance_id, and cv_duration values.}
 
-\item{cv_label:}{whether a segment is a C(onsonant) or a V(owel)}
+\item{cv_label}{column name indicating whether a segment is a C(onsonant) or a V(owel).}
 
-\item{utterance_id:}{each unique utterance should have a unique id}
+\item{utterance_id}{column name for unique utterance IDs.}
 
-\item{cv_duration:}{the duration of C or V}
+\item{cv_duration}{column name for the duration of C or V.}
 }
 \value{
-varco_cv: a data frame containing the results of Varco C and Varco V values
+a data frame containing the results of Varco C and Varco V values.
 }
 \description{
 This function loads a dataframe as input and returns a dataframe containing the mean values of Varco C and Varco V.
@@ -28,14 +28,14 @@ Varco C and Varco V are rhythm metrics based on Dellwo, Volker (2006). Rhythm an
 \verb{Varco V: Delta V / mean(V duration) * 100}
 }
 \examples{
-df <- data.frame (cv_label  = c("c", "v", "c", "v","c", "v", "c", "v"),
-                  utterance_id = c("utt_1", "utt_1", "utt_2", "utt_2",
-                                   "utt_1", "utt_1", "utt_2", "utt_2"),
-                  cv_duration = c(0.1, 0.8, 0.2, 0.5, 0.3, 0.3, 0.4, 0.7))
+df_test <- data.frame(cv_label = c("c", "v", "c", "v","c", "v", "c", "v"),
+                      utterance_id = c("utt_1", "utt_1", "utt_2", "utt_2",
+                                       "utt_3", "utt_3", "utt_4", "utt_4"),
+                      cv_duration = c(0.1, 0.8, 0.2, 0.5, 0.3, 0.3, 0.4, 0.7))
 
-varco_cv(df, df$cv_label, df$utterance_id, df$cv_duration)
+varco_cv(df_test, cv_label, utterance_id, cv_duration)
 
 }
 \author{
-Cong Zhang, \email{cong.zhang@ru.nl}
+Cong Zhang, \email{cong.zhang@newcastle.ac.uk}
 }

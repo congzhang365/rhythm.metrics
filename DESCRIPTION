@@ -1,6 +1,6 @@
 Package: rhythm.metrics
 Title: Analyse and Visualise Rhythm Metrics
-Version: 0.0.0.9000
+Version: 1.1.0
 Authors@R: 
     person(given = "Cong",
            family = "Zhang",
@@ -10,11 +10,13 @@ Authors@R:
 Description: This package is designed for calculating and visualising 
     speech rhythm metrics. It provides functions for the calculation of 
     Delta C, Delta V, VarcoC, VarcoV, %V, rPVI_C, and nPVI_V.
-License: GPL (>= 3)
+License: GPL (>= 3) + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Depends: 
+    R (>= 4.5.0)
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.3.3
 Imports: 
     dplyr,
     ggplot2,

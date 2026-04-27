@@ -1,2 +1,4 @@
 ^rhythm\.metrics\.Rproj$
 ^\.Rproj\.user$
+^\.positai$
+^\.claude$

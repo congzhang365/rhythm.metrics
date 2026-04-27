@@ -6,7 +6,8 @@
 \usage{
 plot_npvi(
   df,
-  v_label,
+  cv_label,
+  label_name,
   utterance_id,
   cv_duration,
   save_fig = FALSE,
@@ -14,13 +15,19 @@ plot_npvi(
 )
 }
 \arguments{
-\item{df:}{a data frame containing cv_labels, utterance_id, and cv_duration values.}
+\item{df}{a data frame containing cv_labels, utterance_id, and cv_duration values.}
 
-\item{v_label:}{a string to filter the vowels, e.g. \code{v_label = 'V'} or \code{v_label = 'vowel'}}
+\item{cv_label}{column name for the segment labels (e.g., cv_label).}
 
-\item{utterance_id:}{each unique utterance should have a unique id}
+\item{label_name}{a string to filter the vowels, e.g. \code{label_name = 'vowel'}.}
 
-\item{cv_duration:}{the duration of C or V (only the values for vowels will be used)}
+\item{utterance_id}{column name for unique utterance IDs.}
+
+\item{cv_duration}{column name for the duration of C or V.}
+
+\item{save_fig}{default is \code{FALSE}. Change to \code{TRUE} to save the plot.}
+
+\item{fig_path}{default is \code{NULL}. Required if \code{save_fig = TRUE}.}
 }
 \value{
 A boxplot for nPVI V values.
@@ -29,19 +36,10 @@ A boxplot for nPVI V values.
 This function loads a dataframe as input and returns a box plot for nPVI V values.
 }
 \examples{
-df <- data.frame (cv_label  = c("consonant", "vowel", "consonant", "vowel",
-                                "consonant", "vowel", "consonant", "vowel"),
-                  utterance_id = c("utt_1", "utt_1", "utt_2", "utt_2",
-                                   "utt_1", "utt_1", "utt_2", "utt_2"),
-                  cv_duration = c(0.1, 0.8, 0.2, 0.5, 0.3, 0.3, 0.4, 0.7))
-
-# Saving the plot
-plot_npvi(df, c_label="vowel", utterance_id, cv_duration, save_fig=T, fig_path='C:/Users/congzhang/Desktop/')
-
-# Not saving the plot
-plot_npvi(df, c_label="vowel", utterance_id, cv_duration, save_fig=FALSE, fig_path=NULL)
+# plot_npvi(df, cv_label = cv_label, label_name = "vowel", 
+#           utterance_id = utterance_id, cv_duration = cv_duration)
 
 }
 \author{
-Cong Zhang, \email{cong.zhang@ru.nl}
+Cong Zhang, \email{cong.zhang@newcastle.ac.uk}
 }

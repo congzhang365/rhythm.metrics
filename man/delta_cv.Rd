@@ -7,16 +7,16 @@
 delta_cv(df, cv_label, utterance_id, cv_duration)
 }
 \arguments{
-\item{df:}{a data frame containing cv_labels, utterance_id, and cv_duration values.}
+\item{df}{a data frame containing cv_labels, utterance_id, and cv_duration values.}
 
-\item{cv_label:}{whether a segment is a C(onsonant) or a V(owel)}
+\item{cv_label}{the column name for whether a segment is a C(onsonant) or a V(owel)}
 
-\item{utterance_id:}{each unique utterance should have a unique id}
+\item{utterance_id}{the column name where each unique utterance has a unique id}
 
-\item{cv_duration:}{the duration of C or V}
+\item{cv_duration}{the column name for the duration of C or V}
 }
 \value{
-delta_cv: a data frame containing the results of Delta C and Delta V values
+a data frame containing the results of Delta C and Delta V values
 }
 \description{
 This function loads a dataframe as input and returns a dataframe containing the mean values and mean standard deviations of Delta C and Delta V.
@@ -28,14 +28,14 @@ Delta C and Delta V are rhythm metrics based on Ramus, F., Nespor, M., & Mehler,
 \verb{Delta V: SD of total V duration}
 }
 \examples{
-df <- data.frame (cv_label  = c("c", "v", "c", "v","c", "v", "c", "v"),
-                  utterance_id = c("utt_1", "utt_1", "utt_2", "utt_2",
-                                   "utt_1", "utt_1", "utt_2", "utt_2"),
-                  cv_duration = c(0.1, 0.8, 0.2, 0.5, 0.3, 0.3, 0.4, 0.7))
+df_test <- data.frame(cv_label  = c("c", "v", "c", "v","c", "v", "c", "v"),
+                      utterance_id = c("utt_1", "utt_1", "utt_2", "utt_2",
+                                       "utt_1", "utt_1", "utt_2", "utt_2"),
+                      cv_duration = c(0.1, 0.8, 0.2, 0.5, 0.3, 0.3, 0.4, 0.7))
 
-delta_cv(df, df$cv_label, df$utterance_id, df$cv_duration)
+delta_cv(df_test, cv_label, utterance_id, cv_duration)
 
 }
 \author{
-Cong Zhang, \email{cong.zhang@ru.nl}
+Cong Zhang, \email{cong.zhang@newcastle.ac.uk}
 }

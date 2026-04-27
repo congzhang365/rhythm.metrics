@@ -7,18 +7,18 @@
 percentage_v(df, v_label, utterance_id, cv_duration, utterance_duration)
 }
 \arguments{
-\item{df:}{a data frame containing cv_labels, utterance_id, cv_duration, and utterance_duration values.}
+\item{df}{a data frame containing cv_labels, utterance_id, cv_duration, and utterance_duration values.}
 
-\item{v_label:}{a string to filter the vowels, e.g. \code{v_label = 'V'} or \code{v_label = 'vowel'}}
+\item{v_label}{a string to filter the vowels, e.g. \code{v_label = 'vowel'}}
 
-\item{utterance_id:}{each unique utterance should have a unique id}
+\item{utterance_id}{column name for unique utterance IDs}
 
-\item{cv_duration:}{the duration of C or V (only the values for vowels will be used)}
+\item{cv_duration}{column name for the duration of C or V}
 
-\item{utterance_duration:}{the duration of entire utterances}
+\item{utterance_duration}{column name for the duration of entire utterances}
 }
 \value{
-percent_v: a data frame containing the mean values and standard deviation of \%
+a data frame containing the mean values and standard deviation of \%V
 }
 \description{
 This function loads a dataframe as input and returns a dataframe containing the mean values and mean standard deviations of \%V.
@@ -29,16 +29,14 @@ This function loads a dataframe as input and returns a dataframe containing the 
 \verb{\% V: total V duration / total utterance duration}
 }
 \examples{
-df <- data.frame (cv_label  = c("consonant", "vowel", "consonant", "vowel",
-                                "consonant", "vowel", "consonant", "vowel"),
-                  utterance_id = c("utt_1", "utt_1", "utt_2", "utt_2",
-                                   "utt_1", "utt_1", "utt_2", "utt_2"),
-                  cv_duration = c(0.1, 0.8, 0.2, 0.5, 0.3, 0.3, 0.4, 0.7),
-                  utterance_duration = c(2.4, 2.4, 2.7, 2.7, 2.4, 2.4, 2.7, 2.7))
+df_test <- data.frame(cv_label = c("consonant", "vowel", "consonant", "vowel"),
+                      utterance_id = c("utt_1", "utt_1", "utt_2", "utt_2"),
+                      cv_duration = c(0.1, 0.8, 0.2, 0.5),
+                      utterance_duration = c(2.4, 2.4, 2.7, 2.7))
 
-percentage_v(df, v_label="vowel", utterance_id, cv_duration, utterance_duration)
+percentage_v(df_test, v_label="vowel", utterance_id, cv_duration, utterance_duration)
 
 }
 \author{
-Cong Zhang, \email{cong.zhang@ru.nl}
+Cong Zhang, \email{cong.zhang@newcastle.ac.uk}
 }

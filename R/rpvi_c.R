@@ -7,9 +7,10 @@
 #'
 #' @author Cong Zhang, \email{cong.zhang@newcastle.ac.uk}
 #' @param df a data frame containing cv_labels, utterance_id, and cv_duration values.
-#' @param c_label a string to filter the consonants, e.g. `c_label = 'consonant'`
+#' @param cv_label the column name that contains the labels (consonant/vowel).
 #' @param utterance_id column name for unique utterance IDs
 #' @param cv_duration column name for the duration of C or V
+#' @param label_name a string to filter the consonants, e.g. 'consonant'
 #'
 #' @return a data frame containing the mean rPVI for consonants
 #' @examples
@@ -17,11 +18,11 @@
 #'                       utterance_id = rep(c("utt_1", "utt_2"), each = 4),
 #'                       cv_duration = c(0.1, 0.8, 0.2, 0.5, 0.3, 0.3, 0.4, 0.7))
 #'
-#' rpvi_c(df_test, c_label="consonant", utterance_id, cv_duration)
+#' rpvi_c(df_test, cv_label="consonant", utterance_id, cv_duration)
 #'
-#' @export  
+#' @export
   rpvi_c <- function(df, cv_label, utterance_id, cv_duration, label_name = "consonant") {
-  
+
   # Use label_name to distinguish the value from the column cv_label
   rpvi_data <- df %>%
     dplyr::filter({{ cv_label }} == label_name) %>%

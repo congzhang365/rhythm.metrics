@@ -4,19 +4,21 @@
 \alias{rpvi_c}
 \title{rPVI C}
 \usage{
-rpvi_c(df, c_label, utterance_id, cv_duration)
+rpvi_c(df, cv_label, utterance_id, cv_duration, label_name = "consonant")
 }
 \arguments{
-\item{df:}{a data frame containing cv_labels, utterance_id, and cv_duration values.}
+\item{df}{a data frame containing cv_labels, utterance_id, and cv_duration values.}
 
-\item{c_label:}{a string to filter the consonants, e.g. \code{c_label = 'C'} or \code{c_label = 'consonant'}}
+\item{cv_label}{the column name that contains the labels (consonant/vowel).}
 
-\item{utterance_id:}{each unique utterance should have a unique id}
+\item{utterance_id}{column name for unique utterance IDs}
 
-\item{cv_duration:}{the duration of C or V (only the values for vowels will be used)}
+\item{cv_duration}{column name for the duration of C or V}
+
+\item{label_name}{a string to filter the consonants, e.g. 'consonant'}
 }
 \value{
-rpvi_c: a data frame containing the mean values of rpvi for consonants
+a data frame containing the mean rPVI for consonants
 }
 \description{
 This function loads a dataframe as input and returns a dataframe containing the mean values of rPVI of consonants.
@@ -26,15 +28,13 @@ rPVI C is a rhythm metrics based on Grabe, E., & Low, E. L. (2002). Durational v
 It calculates the sum of the absolute differences between pairs of consecutive consonantal intervals divided by the number of pairs in the speech sample.
 }
 \examples{
-df <- data.frame (cv_label  = c("consonant", "vowel", "consonant", "vowel",
-                                "consonant", "vowel", "consonant", "vowel"),
-                  utterance_id = c("utt_1", "utt_1", "utt_2", "utt_2",
-                                   "utt_1", "utt_1", "utt_2", "utt_2"),
-                  cv_duration = c(0.1, 0.8, 0.2, 0.5, 0.3, 0.3, 0.4, 0.7))
+df_test <- data.frame(cv_label = rep(c("consonant", "vowel"), 4),
+                      utterance_id = rep(c("utt_1", "utt_2"), each = 4),
+                      cv_duration = c(0.1, 0.8, 0.2, 0.5, 0.3, 0.3, 0.4, 0.7))
 
-rpvi_c(df, c_label="consonant", utterance_id, cv_duration)
+rpvi_c(df_test, cv_label="consonant", utterance_id, cv_duration)
 
 }
 \author{
-Cong Zhang, \email{cong.zhang@ru.nl}
+Cong Zhang, \email{cong.zhang@newcastle.ac.uk}
 }
