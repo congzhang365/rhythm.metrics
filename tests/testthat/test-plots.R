@@ -11,4 +11,6 @@ test_that("Visualisation functions return ggplot objects", {
   expect_s3_class(plot_delta_cv(df_test, cv_label, utterance_id, cv_duration), "ggplot")
   expect_s3_class(plot_rpvi(df_test, cv_label, label_name = "consonant", utterance_id, cv_duration), "ggplot")
   expect_s3_class(plot_npvi(df_test, cv_label, label_name = "vowel", utterance_id, cv_duration), "ggplot")
+  expect_s3_class(plot_varco_cv(df_test, cv_label, utterance_id, cv_duration), "ggplot")
+  expect_s3_class(plot_percentage_v(df_test, cv_label, label_name = "vowel", utterance_id, cv_duration, utterance_duration), "ggplot")
 })

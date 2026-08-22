@@ -127,7 +127,7 @@ plot_varco_cv(df, cv_label, utterance_id, cv_duration)
 
 Ramus, F., Nespor, M., & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. *Cognition, 73*(3), 265-292.
 
-It measures the proportion of vocalic material relative to total utterance duration.
+It measures the percentage of total utterance duration occupied by vocalic material.
 
 ```r
 percentage_v(df, v_label = "vowel", utterance_id, cv_duration, utterance_duration)
@@ -236,16 +236,23 @@ For more detailed examples and usage notes, see the package vignette and functio
 
 If you use `rhythm.metrics` in your research, please cite:
 
-Zhang, C. (2022). *A Guide for the R Package "rhythm_metrics"*. Retrieved from [https://osf.io/kfnzt/](https://osf.io/kfnzt/)
+Zhang, C. (2022). *A Guide for the R Package "rhythm_metrics"*. OSF Preprints. https://doi.org/10.31219/osf.io/kfnzt
 
-BibTeX:
+You can also obtain the package citation from R with:
+
+```r
+citation("rhythm.metrics")
+```
+
+BibTeX for the 2022 guide:
 
 ```bibtex
-@article{zhang2022,
+@misc{zhang2022,
   title  = {A Guide for the R Package "rhythm_metrics"},
   author = {Zhang, Cong},
-  url    = {https://osf.io/kfnzt/},
-  year   = {2022}
+  year   = {2022},
+  doi    = {10.31219/osf.io/kfnzt},
+  url    = {https://doi.org/10.31219/osf.io/kfnzt}
 }
 ```
 

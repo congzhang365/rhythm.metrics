@@ -33,12 +33,20 @@ A boxplot for Varco C and Varco V values.
 This function loads a dataframe as input and returns a box plot for Varco C and Varco V values.
 }
 \examples{
-df_test <- data.frame(cv_label = rep(c("c", "v"), 10),
-                      utterance_id = rep(paste0("utt_", 1:10), each = 2),
-                      cv_duration = runif(20, 0.1, 0.8))
+df_test <- data.frame(
+  cv_label = rep(c("consonant", "vowel"), 8),
+  utterance_id = rep(paste0("utt_", 1:4), each = 4),
+  cv_duration = c(
+    0.10, 0.80, 0.20, 0.50,
+    0.30, 0.30, 0.40, 0.70,
+    0.30, 0.88, 0.50, 0.90,
+    0.30, 0.57, 0.40, 0.97
+  )
+)
 
-# Not saving the plot
-plot_varco_cv(df_test, cv_label, utterance_id, cv_duration, save_fig = FALSE)
+plot_varco_cv(
+  df_test, cv_label, utterance_id, cv_duration, save_fig = FALSE
+)
 
 }
 \author{

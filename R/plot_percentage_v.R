@@ -14,14 +14,30 @@
 #'
 #' @return A boxplot for %V values.
 #' @examples
-#' # plot_percentage_v(df, cv_label = cv_label, label_name = "vowel", 
-#' #                  utterance_id = utterance_id, cv_duration = cv_duration, 
-#' #                  utterance_duration = utterance_duration)
+#' df_test <- data.frame(
+#'   cv_label = rep(c("consonant", "vowel"), 8),
+#'   utterance_id = rep(paste0("utt_", 1:4), each = 4),
+#'   cv_duration = c(
+#'     0.10, 0.80, 0.20, 0.50,
+#'     0.30, 0.30, 0.40, 0.70,
+#'     0.30, 0.88, 0.50, 0.90,
+#'     0.30, 0.57, 0.40, 0.97
+#'   ),
+#'   utterance_duration = rep(c(2.4, 2.7, 3.4, 1.8), each = 4)
+#' )
 #'
+#' plot_percentage_v(
+#'   df_test,
+#'   cv_label = cv_label,
+#'   label_name = "vowel",
+#'   utterance_id = utterance_id,
+#'   cv_duration = cv_duration,
+#'   utterance_duration = utterance_duration
+#' )
+#' 
 #' @export
 plot_percentage_v <- function(df, cv_label, label_name, utterance_id, cv_duration, utterance_duration, save_fig=FALSE, fig_path=NULL) {
-  
-  # 1. Calculate %V per utterance
+
   v_sum <- df %>%
     dplyr::filter({{ cv_label }} == label_name) %>%
     dplyr::group_by({{ utterance_id }}, {{ cv_label }}) %>%
@@ -31,21 +47,18 @@ plot_percentage_v <- function(df, cv_label, label_name, utterance_id, cv_duratio
     dplyr::select({{ utterance_id }}, {{ utterance_duration }}) %>%
     dplyr::distinct()
 
-  # Join using rlang to handle the column name correctly
   plot_df <- dplyr::left_join(v_sum, utt_dur, by = rlang::as_label(rlang::enquo(utterance_id))) %>%
-    dplyr::mutate(percent_v = .data$v_total / {{ utterance_duration }})
+    dplyr::mutate(percent_v = (.data$v_total / {{ utterance_duration }}) * 100)
 
-  # 2. Create the plot
-  plot <- ggplot2::ggplot(plot_df, 
-                          ggplot2::aes(x = {{ cv_label }}, 
-                                       y = .data$percent_v, 
+  plot <- ggplot2::ggplot(plot_df,
+                          ggplot2::aes(x = {{ cv_label }},
+                                       y = .data$percent_v,
                                        fill = {{ cv_label }})) +
     ggplot2::geom_boxplot(show.legend = FALSE) +
     ggsci::scale_fill_jco() +
     ggplot2::labs(y = '%V Value', x = 'Segment Type') +
     ggplot2::theme_minimal()
 
-  # 3. Save and Return logic
   if (save_fig) {
     if (is.null(fig_path)) {
       stop("You must provide a 'fig_path' to save the figure.")

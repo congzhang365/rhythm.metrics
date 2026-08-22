@@ -2,9 +2,9 @@
 #'
 #' This function loads a dataframe as input and returns a dataframe containing the mean values and mean standard deviations of %V.
 #'
-#' %V is a rhythm metrics based on Ramus, F., Nespor, M., & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. Cognition, 73(3), 265-292. It calculates the ratio of vocalic material to the total duration of an utterance.
+#' %V is a rhythm metrics based on Ramus, F., Nespor, M., & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. Cognition, 73(3), 265-292. It calculates the percentage of an utterance occupied by vocalic material.
 #'
-#' `% V: total V duration / total utterance duration`
+#' `%V: (total V duration / total utterance duration) * 100`
 #'
 #' @author Cong Zhang, \email{cong.zhang@newcastle.ac.uk}
 #' @param df a data frame containing cv_labels, utterance_id, cv_duration, and utterance_duration values.
@@ -24,23 +24,19 @@
 #'
 #' @export
 percentage_v <- function(df, v_label, utterance_id, cv_duration, utterance_duration) {
-  
-  # 1. Calculate total vowel duration per utterance
+
   v_sum <- df %>%
     dplyr::filter(cv_label == v_label) %>%
     dplyr::group_by({{ utterance_id }}, cv_label) %>%
     dplyr::summarise(v_total = sum({{ cv_duration }}, na.rm = TRUE), .groups = "drop")
 
-  # 2. Get unique utterance durations (distinct to avoid row duplication)
   utt_dur <- df %>%
     dplyr::select({{ utterance_id }}, {{ utterance_duration }}) %>%
     dplyr::distinct()
 
-  # 3. Join and calculate %V
   percent_v_data <- dplyr::left_join(v_sum, utt_dur, by = rlang::as_label(rlang::enquo(utterance_id))) %>%
-    dplyr::mutate(percent_v = v_total / {{ utterance_duration }})
+    dplyr::mutate(percent_v = (v_total / {{ utterance_duration }}) * 100)
 
-  # 4. Final Summary
   result <- percent_v_data %>%
     dplyr::group_by(cv_label) %>%
     dplyr::summarise(

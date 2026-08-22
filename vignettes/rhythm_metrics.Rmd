@@ -116,9 +116,9 @@ plot_varco_cv(df, cv_label, utterance_id, cv_duration)
 \newpage
 ## percentage_v
 
-%V is a rhythm metrics based on Ramus, F., Nespor, M., & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. Cognition, 73(3), 265-292. It calculates the ratio of vocalic material to the total duration of an utterance.
+%V is a rhythm metrics based on Ramus, F., Nespor, M., & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. Cognition, 73(3), 265-292. It calculates the percentage of an utterance occupied by vocalic material.
 
-`% V: total V duration / total utterance duration`
+`%V: (total V duration / total utterance duration) * 100`
 
 
 ```{r}

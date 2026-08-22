@@ -17,6 +17,7 @@ test_that("Core rhythm metrics return correct structures", {
   res_pv <- percentage_v(df_test, v_label = "vowel", utterance_id, cv_duration, utterance_duration)
   expect_s3_class(res_pv, "data.frame")
   expect_true(ncol(res_pv) >= 2)
+  expect_equal(res_pv$mean_percent_v, 57.2780501089, tolerance = 1e-8)
   
   # Check PVI calculations
   expect_no_error(rpvi_c(df_test, cv_label, label_name = "consonant", utterance_id, cv_duration))

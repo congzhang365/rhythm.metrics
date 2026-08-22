@@ -18,12 +18,17 @@
 #'                       utterance_id = rep(c("utt_1", "utt_2"), each = 4),
 #'                       cv_duration = c(0.1, 0.8, 0.2, 0.5, 0.3, 0.3, 0.4, 0.7))
 #'
-#' rpvi_c(df_test, cv_label="consonant", utterance_id, cv_duration)
+#' rpvi_c(
+#'   df_test,
+#'   cv_label = cv_label,
+#'   utterance_id = utterance_id,
+#'   cv_duration = cv_duration,
+#'   label_name = "consonant"
+#' )
 #'
 #' @export
   rpvi_c <- function(df, cv_label, utterance_id, cv_duration, label_name = "consonant") {
 
-  # Use label_name to distinguish the value from the column cv_label
   rpvi_data <- df %>%
     dplyr::filter({{ cv_label }} == label_name) %>%
     dplyr::group_by({{ utterance_id }}) %>%

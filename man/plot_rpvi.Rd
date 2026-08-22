@@ -36,8 +36,24 @@ A boxplot for rPVI values.
 This function loads a dataframe as input and returns a box plot for rPVI C values.
 }
 \examples{
-# plot_rpvi(df, cv_label = cv_label, label_name = "consonant", 
-#           utterance_id = utterance_id, cv_duration = cv_duration)
+df_test <- data.frame(
+  cv_label = rep(c("consonant", "vowel"), 8),
+  utterance_id = rep(paste0("utt_", 1:4), each = 4),
+  cv_duration = c(
+    0.10, 0.80, 0.20, 0.50,
+    0.30, 0.30, 0.40, 0.70,
+    0.30, 0.88, 0.50, 0.90,
+    0.30, 0.57, 0.40, 0.97
+  )
+)
+
+plot_rpvi(
+  df_test,
+  cv_label = cv_label,
+  label_name = "consonant",
+  utterance_id = utterance_id,
+  cv_duration = cv_duration
+)
 
 }
 \author{

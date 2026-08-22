@@ -28,9 +28,6 @@
 #' @import rlang
 #' @export
 delta_cv <- function(df, cv_label, utterance_id, cv_duration) {
-
-  # We use the {{ }} (curly-curly) operator for compatibility with
-  # modern dplyr inside functions, but the pipe remains the classic %>%
   res <- df %>%
     dplyr::group_by({{ cv_label }}, {{ utterance_id }}) %>%
     dplyr::summarise(mean_d = stats::sd({{ cv_duration }}, na.rm = TRUE), .groups = "drop")

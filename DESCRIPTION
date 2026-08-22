@@ -1,30 +1,36 @@
 Package: rhythm.metrics
-Title: Analyse and Visualise Rhythm Metrics
+Title: Analyse and Visualise Speech Rhythm and Timing Metrics
 Version: 1.1.0
 Authors@R: 
-    person(given = "Cong",
-           family = "Zhang",
-           role = c("aut", "cre"),
-           email = "cong.zhang@newcastle.ac.uk",
+    person("Cong", "Zhang", , "cong.zhang@newcastle.ac.uk", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-2561-2113"))
-Description: This package is designed for calculating and visualising 
-    speech rhythm metrics. It provides functions for the calculation of 
-    Delta C, Delta V, VarcoC, VarcoV, %V, rPVI_C, and nPVI_V.
-License: GPL (>= 3) + file LICENSE
-Encoding: UTF-8
-LazyData: true
+Description: Calculates and visualises speech rhythm and timing metrics. The
+    'rhythm.metrics' package provides a standardised workflow to compute
+    common metrics including Delta C, Delta V, VarcoC, VarcoV, the
+    percentage of vocalic intervals (%V), and both raw and normalised
+    Pairwise Variability Indices (rPVI, nPVI). It includes functions for
+    calculating and visualising these measures to facilitate cross-linguistic
+    and developmental rhythm research. Delta C, Delta V, and %V measures are
+    based on Ramus et al. (1999)
+    <doi:10.1016/S0010-0277(99)00058-X>; VarcoC and VarcoV measures are
+    based on Dellwo (2006, ISBN: 9783631554777); and rPVI-C and nPVI-V are
+    based on Grabe & Low (2002) <doi:10.1515/9783110197105.2.515>.
+License: GPL (>= 3)
 Depends: 
     R (>= 4.5.0)
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Imports: 
     dplyr,
     ggplot2,
     ggsci,
-    rlang,
-    magrittr
+    magrittr,
+    rlang
 Suggests: 
-    testthat (>= 3.0.0),
     knitr,
-    rmarkdown
-VignetteBuilder: knitr
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.0.0

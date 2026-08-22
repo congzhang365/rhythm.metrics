@@ -12,17 +12,24 @@
 #'
 #' @return A boxplot for Delta C and Delta V values.
 #' @examples
-#' df_test <- data.frame(cv_label = rep(c("c", "v"), 10),
-#'                       utterance_id = rep(paste0("utt_", 1:10), each = 2),
-#'                       cv_duration = runif(20, 0.05, 0.5))
+#' df_test <- data.frame(
+#'   cv_label = rep(c("consonant", "vowel"), 8),
+#'   utterance_id = rep(paste0("utt_", 1:4), each = 4),
+#'   cv_duration = c(
+#'     0.10, 0.80, 0.20, 0.50,
+#'     0.30, 0.30, 0.40, 0.70,
+#'     0.30, 0.88, 0.50, 0.90,
+#'     0.30, 0.57, 0.40, 0.97
+#'   )
+#' )
 #'
-#' # Not saving the plot
-#' plot_delta_cv(df_test, cv_label, utterance_id, cv_duration, save_fig = FALSE)
-#'
+#' plot_delta_cv(
+#'   df_test, cv_label, utterance_id, cv_duration, save_fig = FALSE
+#' )
+#' 
 #' @export
 plot_delta_cv <- function(df, cv_label, utterance_id, cv_duration, save_fig = FALSE, fig_path = NULL) {
-  
-  # 1. Calculate Delta (SD) per utterance
+
   plot_df <- df %>%
     dplyr::group_by({{ cv_label }}, {{ utterance_id }}) %>%
     dplyr::summarise(
@@ -30,20 +37,18 @@ plot_delta_cv <- function(df, cv_label, utterance_id, cv_duration, save_fig = FA
       .groups = "drop"
     )
 
-  # 2. Build the plot
-  plot <- ggplot2::ggplot(plot_df, 
-                          ggplot2::aes(x = {{ cv_label }}, 
-                                       y = .data$mean_d, 
+  plot <- ggplot2::ggplot(plot_df,
+                          ggplot2::aes(x = {{ cv_label }},
+                                       y = .data$mean_d,
                                        fill = {{ cv_label }})) +
     ggplot2::geom_boxplot() +
     ggsci::scale_fill_jco() +
-    ggplot2::labs(y = expression(Delta * " value"), 
-                  x = 'Segment Type', 
+    ggplot2::labs(y = expression(Delta * " value"),
+                  x = 'Segment Type',
                   fill = 'Segment Type') +
     ggplot2::theme_minimal() +
     ggplot2::theme(legend.position = "top")
 
-  # 3. Saving logic
   if (save_fig) {
     if (is.null(fig_path)) {
       stop("You must provide a 'fig_path' to save the figure.")

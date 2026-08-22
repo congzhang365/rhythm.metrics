@@ -24,9 +24,9 @@ a data frame containing the mean values and standard deviation of \%V
 This function loads a dataframe as input and returns a dataframe containing the mean values and mean standard deviations of \%V.
 }
 \details{
-\%V is a rhythm metrics based on Ramus, F., Nespor, M., & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. Cognition, 73(3), 265-292. It calculates the ratio of vocalic material to the total duration of an utterance.
+\%V is a rhythm metrics based on Ramus, F., Nespor, M., & Mehler, J. (1999). Correlates of linguistic rhythm in the speech signal. Cognition, 73(3), 265-292. It calculates the percentage of an utterance occupied by vocalic material.
 
-\verb{\% V: total V duration / total utterance duration}
+\verb{\%V: (total V duration / total utterance duration) * 100}
 }
 \examples{
 df_test <- data.frame(cv_label = c("consonant", "vowel", "consonant", "vowel"),

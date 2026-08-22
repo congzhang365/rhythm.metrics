@@ -13,13 +13,28 @@
 #'
 #' @return A boxplot for nPVI V values.
 #' @examples
-#' # plot_npvi(df, cv_label = cv_label, label_name = "vowel", 
-#' #           utterance_id = utterance_id, cv_duration = cv_duration)
+#' df_test <- data.frame(
+#'   cv_label = rep(c("consonant", "vowel"), 8),
+#'   utterance_id = rep(paste0("utt_", 1:4), each = 4),
+#'   cv_duration = c(
+#'     0.10, 0.80, 0.20, 0.50,
+#'     0.30, 0.30, 0.40, 0.70,
+#'     0.30, 0.88, 0.50, 0.90,
+#'     0.30, 0.57, 0.40, 0.97
+#'   )
+#' )
 #'
+#' plot_npvi(
+#'   df_test,
+#'   cv_label = cv_label,
+#'   label_name = "vowel",
+#'   utterance_id = utterance_id,
+#'   cv_duration = cv_duration
+#' )
+#' 
 #' @export
 plot_npvi <- function(df, cv_label, label_name, utterance_id, cv_duration, save_fig=FALSE, fig_path=NULL) {
-  
-  # 1. Calculate nPVI per utterance
+
   plot_df <- df %>%
     dplyr::filter({{ cv_label }} == label_name) %>%
     dplyr::group_by({{ utterance_id }}, {{ cv_label }}) %>%
@@ -33,17 +48,15 @@ plot_npvi <- function(df, cv_label, label_name, utterance_id, cv_duration, save_
       .groups = "drop"
     )
 
-  # 2. Create the plot
-  plot <- ggplot2::ggplot(plot_df, 
-                          ggplot2::aes(x = {{ cv_label }}, 
-                                       y = .data$npvi_val, 
+  plot <- ggplot2::ggplot(plot_df,
+                          ggplot2::aes(x = {{ cv_label }},
+                                       y = .data$npvi_val,
                                        fill = {{ cv_label }})) +
     ggplot2::geom_boxplot(show.legend = FALSE) +
     ggsci::scale_fill_jco() +
     ggplot2::labs(y = 'nPVI-V Value', x = 'Segment Type') +
     ggplot2::theme_minimal()
 
-  # 3. Save and Return logic
   if (save_fig) {
     if (is.null(fig_path)) {
       stop("You must provide a 'fig_path' to save the figure.")

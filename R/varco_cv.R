@@ -24,24 +24,22 @@
 #'
 #' @export
 varco_cv <- function(df, cv_label, utterance_id, cv_duration) {
-  
-  # 1. Calculate Varco per utterance per category (C/V)
+
   varco_data <- df %>%
     dplyr::group_by({{ cv_label }}, {{ utterance_id }}) %>%
     dplyr::summarise(
       # Varco = (SD / Mean) * 100
-      cv_val = (stats::sd({{ cv_duration }}, na.rm = TRUE) / 
+      cv_val = (stats::sd({{ cv_duration }}, na.rm = TRUE) /
                 mean({{ cv_duration }}, na.rm = TRUE)) * 100,
       .groups = "drop"
     )
 
-  # 2. Return the mean across all utterances
   result <- varco_data %>%
     dplyr::group_by({{ cv_label }}) %>%
     dplyr::summarise(
       varco_cv = mean(cv_val, na.rm = TRUE),
       .groups = "drop"
     )
-    
+
   return(result)
 }

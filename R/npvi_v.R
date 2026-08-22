@@ -16,13 +16,12 @@
 #'                       cv_duration = c(0.1, 0.8, 0.2, 0.5, 0.3, 0.3, 0.4, 0.7,
 #'                                        0.3, 0.88, 0.5, 0.9, 0.3, 0.57, 0.4, 0.97))
 #'
-#' npvi_v(df_test, cv_label = cv_label, label_name = "vowel", 
+#' npvi_v(df_test, cv_label = cv_label, label_name = "vowel",
 #'        utterance_id = utterance_id, cv_duration = cv_duration)
 #'
 #' @export
 npvi_v <- function(df, cv_label, label_name, utterance_id, cv_duration) {
-  
-  # 1. Filter for vowels and calculate nPVI per utterance
+
   npvi_data <- df %>%
     dplyr::filter({{ cv_label }} == label_name) %>%
     dplyr::group_by({{ utterance_id }}) %>%
@@ -38,7 +37,6 @@ npvi_v <- function(df, cv_label, label_name, utterance_id, cv_duration) {
       .groups = "drop"
     )
 
-  # 2. Return the mean across all utterances
   result <- npvi_data %>%
     dplyr::summarise(npvi = mean(npvi_utt, na.rm = TRUE))
 

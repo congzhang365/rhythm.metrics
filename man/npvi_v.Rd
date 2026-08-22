@@ -29,7 +29,7 @@ df_test <- data.frame(cv_label = rep(c("consonant", "vowel"), 8),
                       cv_duration = c(0.1, 0.8, 0.2, 0.5, 0.3, 0.3, 0.4, 0.7,
                                        0.3, 0.88, 0.5, 0.9, 0.3, 0.57, 0.4, 0.97))
 
-npvi_v(df_test, cv_label = cv_label, label_name = "vowel", 
+npvi_v(df_test, cv_label = cv_label, label_name = "vowel",
        utterance_id = utterance_id, cv_duration = cv_duration)
 
 }

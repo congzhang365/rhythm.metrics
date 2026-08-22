@@ -32,7 +32,13 @@ df_test <- data.frame(cv_label = rep(c("consonant", "vowel"), 4),
                       utterance_id = rep(c("utt_1", "utt_2"), each = 4),
                       cv_duration = c(0.1, 0.8, 0.2, 0.5, 0.3, 0.3, 0.4, 0.7))
 
-rpvi_c(df_test, cv_label="consonant", utterance_id, cv_duration)
+rpvi_c(
+  df_test,
+  cv_label = cv_label,
+  utterance_id = utterance_id,
+  cv_duration = cv_duration,
+  label_name = "consonant"
+)
 
 }
 \author{
