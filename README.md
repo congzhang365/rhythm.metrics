@@ -1,12 +1,13 @@
 # rhythm.metrics
 
+[![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://CRAN.R-project.org/package=rhythm.metrics)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-`rhythm.metrics` is an R package for calculating and visualising speech rhythm metrics from consonantal and vocalic interval durations.
+`rhythm.metrics`: Analyse and Visualise Speech Rhythm and Timing Metrics 
 
-The package provides functions for computing widely used rhythm measures, including Delta C, Delta V, Varco C, Varco V, %V, rPVI-C, and nPVI-V, as well as plotting functions for exploring and presenting results.
+This package calculates and visualises speech rhythm and timing metrics from consonantal and vocalic interval durations. It provides a standardised workflow to compute common metrics including `Delta C`, `Delta V`, `Varco C`, `Varco V`, `%V`, `rPVI-C`, and `nPVI-V`, as well as plotting functions for exploring and presenting results. 
 
-> Note: `rhythm.metrics` is under active development, and additional metrics may be added in future releases.
+> Note: `rhythm.metrics` is under slow but active development, and additional metrics may be added in future releases. 
 
 ## Features
 
@@ -17,8 +18,12 @@ The package provides functions for computing widely used rhythm measures, includ
 
 ## Installation
 
-You can install the development version of `rhythm.metrics` from GitHub:
+You can install the released version of `rhythm.metrics` from [CRAN](https://CRAN.R-project.org/package=rhythm.metrics) with:
+```r
+install.packages("rhythm.metrics")
+```
 
+Alternatively, you can install the development version from GitHub:
 ```r
 install.packages("remotes")
 remotes::install_github("congzhang365/rhythm.metrics")
@@ -244,10 +249,18 @@ BibTeX:
 }
 ```
 
+## Research Using rhythm.metrics
+
+The following studies have used rhythm.metrics in their analysis:
+
+- Laméris, T. J., & Kubota, M. (2026). L1 phonetic reversal and L2 phonetic attrition in Japanese–English bilingual returnee children over the course of five years: an acoustic study. *Second Language Research*. [https://doi.org/10.1177/02676583261461940](https://doi.org/10.1177/02676583261461940)
+- Sun, Y., & Zhang, C. (2022). Task effect on L2 rhythm production by Cantonese learners of Portuguese. *DELTA: Documentação de Estudos em Lingüística Teórica e Aplicada*, 38(3), 202258943. [https://doi.org/10.1590/1981-5794-202258943](https://doi.org/10.1590/1981-5794-202258943)
+
+If you have published work using rhythm.metrics and would like it listed here, please feel free to open an issue or pull request.
+
 ## Contributing
 
 Bug reports, feature requests, and suggestions are welcome. If you encounter an issue or would like to suggest an additional metric, please open an issue on GitHub or email me at cong.zhang@newcastle.ac.uk
-
 
 ## License
 
