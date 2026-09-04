@@ -254,9 +254,9 @@ BibTeX:
 The following studies have used rhythm.metrics in their analysis:
 
 - Laméris, T. J., & Kubota, M. (2026). L1 phonetic reversal and L2 phonetic attrition in Japanese–English bilingual returnee children over the course of five years: an acoustic study. *Second Language Research*. [https://doi.org/10.1177/02676583261461940](https://doi.org/10.1177/02676583261461940)
-- Sun, Y., & Zhang, C. (2022). Task effect on L2 rhythm production by Cantonese learners of Portuguese. *DELTA: Documentação de Estudos em Lingüística Teórica e Aplicada*, 38(3), 202258943. [https://doi.org/10.1590/1981-5794-202258943](https://doi.org/10.1590/1981-5794-202258943)
+- Sun, Y., & Zhang, C. (2022). Task effect on L2 rhythm production by Cantonese learners of Portuguese. *DELTA: Documentação de Estudos em Lingüística Teórica e Aplicada*, 38(3), 202258943. [https://doi.org/10.1590/1678-460X202258943](https://doi.org/10.1590/1678-460X202258943)
 
-If you have published work using rhythm.metrics and would like it listed here, please feel free to open an issue or pull request.
+>If you have published work using `rhythm.metrics` and would like it listed here, please feel free to open an issue or pull request.
 
 ## Contributing
 
