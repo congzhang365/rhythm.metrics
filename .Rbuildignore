@@ -4,3 +4,4 @@
 ^\.claude$
 ^CRAN-SUBMISSION$
 ^cran-comments\.md$
+^\.github$

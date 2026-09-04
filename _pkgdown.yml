@@ -1,0 +1,13 @@
+url: https://congzhang365.github.io/rhythm.metrics/
+
+template:
+  bootstrap: 5
+
+navbar:
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [search, github]
+
+home:
+  title: rhythm.metrics
+  description: Analyse and visualise speech rhythm and timing metrics in R.
