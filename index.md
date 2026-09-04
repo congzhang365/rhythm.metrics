@@ -2,9 +2,11 @@
 
 ![rhythm.metrics logo](reference/figures/logo.png)
 
-[![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-blue.svg)](https://CRAN.R-project.org/package=rhythm.metrics)
+[![CRAN_Status_Badge](https://img.shields.io/badge/CRAN-published-F88669.svg)](https://CRAN.R-project.org/package=rhythm.metrics)
+[![Documentation](https://img.shields.io/badge/docs-pkgdown-F88669)](https://congzhang365.github.io/rhythm.metrics/)
 [![License: GPL
-v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+v3](https://img.shields.io/badge/License-GPLv3-F88669.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![DOI](https://img.shields.io/badge/DOI-10.32614%2FCRAN.package.rhythm.metrics-7BB6B8.svg)](https://doi.org/10.32614/CRAN.package.rhythm.metrics)
 
 `rhythm.metrics`: Analyse and Visualise Speech Rhythm and Timing Metrics
 
@@ -274,10 +276,14 @@ function help pages after installation.
 
 ## Citation
 
-If you use `rhythm.metrics` in your research, please cite:
+If you use `rhythm.metrics` in your research, please cite both the
+software package version and the original package guide.
 
-Zhang, C. (2022). *A Guide for the R Package “rhythm_metrics”*. OSF
-Preprints. <https://doi.org/10.31219/osf.io/kfnzt>
+### Software
+
+Zhang, C. (2026). *rhythm.metrics: Analyse and Visualise Speech Rhythm
+and Timing Metrics* (Version 1.1.0) \[R package\]. CRAN.
+<https://doi.org/10.32614/CRAN.package.rhythm.metrics>
 
 You can also obtain the package citation from R with:
 
@@ -285,6 +291,11 @@ You can also obtain the package citation from R with:
 
 citation("rhythm.metrics")
 ```
+
+### Package guide
+
+Zhang, C. (2022). *A Guide for the R Package “rhythm_metrics”*. OSF
+Preprints. <https://doi.org/10.31219/osf.io/kfnzt>
 
 BibTeX for the 2022 guide:
 
